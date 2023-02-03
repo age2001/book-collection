@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   def index
-    @books = Book.order(:position)
+    @books = Book.order(:title)
   end
   
   def show
@@ -8,14 +8,14 @@ class BooksController < ApplicationController
   end
   
   def new
-    @count = Book.count()
-    @book = Book.new(position: @count + 1)
+    # @count = Book.count()
+    @book = Book.new()
   end
   
   def create
-    @task = Book.new(task_params)
+    @book = Book.new(book_params)
     if @book.save
-      redirect_to books_path
+      redirect_to books_path, notice: "New book has been added to the collection!"
     else
       # the 'new' action A is not being called here
       # assign any instance variables needed
@@ -29,10 +29,9 @@ class BooksController < ApplicationController
   end
   
   def update
-  
     @book = Book.find(params[:id])
     if @book.update(book_params)
-      redirect_to book_path(@book)
+    redirect_to book_path(@book), notice: "Book has been edited!"
     else
       render('edit')
     end
@@ -45,7 +44,7 @@ class BooksController < ApplicationController
   def destroy
     @book = Book.find(params[:id])
     @book.destroy
-    redirect_to books_path
+    redirect_to books_path, notice: "Book has been deleted from the collection!"
   end
   
   private

@@ -1,0 +1,17 @@
+<%= link_to("Back to Home", books_path, :class => 'back-link') %>
+
+<div class="books new">
+  <h2>Create Book</h2>
+
+  <%= form_for(@book) do |f| %>
+
+    <%= render(partial: 'form', locals: {f: f}) %>
+
+    <p>Date in format yyyy-mm-dd</p>
+
+    <div class="form-buttons">
+      <%= f.submit("Create Book") %>
+    </div>
+
+  <% end %>
+</div>

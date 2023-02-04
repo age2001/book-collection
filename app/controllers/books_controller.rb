@@ -19,7 +19,6 @@ class BooksController < ApplicationController
     else
       # the 'new' action A is not being called here
       # assign any instance variables needed
-      # @count = Task.count 
       render('new')
     end
   end
